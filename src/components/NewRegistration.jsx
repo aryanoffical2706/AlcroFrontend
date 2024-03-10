@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import datetime from 'datetime';
 import axios from "axios";
 import {
   Button,
@@ -88,12 +89,10 @@ const NewRegistration = () => {
 const submitdata=()=>{
   const data={};
   if (Useremail) data.UserEmail = Useremail;
-  if (selectedEntryTime) data.startTime = datetime.datetime
-  .strptime(selectedEntryTime, "%Y-%m-%dT%H:%M:%S.%f+00:00")
-  .isoformat();
-  if (selectedExitTime) data.endTime = datetime.datetime
-  .strptime(selectedExitTime, "%Y-%m-%dT%H:%M:%S.%f+00:00")
-  .isoformat();
+  const startTime = new Date(`${entryDate}T${selectedEntryTime}:00`);
+  data.startTime = startTime.toISOString();
+  const endTime = new Date(`${exitDate}T${selectedExitTime}:00`);
+  data.endTime = endTime.toISOString();
   if (price) data.totalPrice =price;
   if (a) data.roomNumber = a;
   if (b) data.roomNumber = b;
@@ -101,14 +100,14 @@ const submitdata=()=>{
  
   axios
   .post(
-    `https://alcor.onrender.com/api/booking`,
+    "https://alcor.onrender.com/api/booking",
     data
   )
   .then((response) => {
-    console.log("PATCH request successful", response);
+    console.log("Post request successful", response);
   })
   .catch((error) => {
-    console.error("Error making PATCH request", error);
+    console.error("Error making POST request", error);
   });
 }
   return (

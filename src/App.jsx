@@ -5,7 +5,7 @@ import NewRegistration from './components/NewRegistration';
 import NotFound from "./NotFound";
 import Edit from './Edit';
 import View from './View';
-import Delete from './Delete';
+import Deletedd from './Delete';
 function App() {
   return (
     <BrowserRouter>
@@ -14,7 +14,7 @@ function App() {
     <Route path="/registration" element={<NewRegistration/>}/>
     <Route path="/edit" element={<Edit/>}/>
     <Route path="/view" element={<View/>}/>
-    <Route path="/delete" element={<Delete/>}/>
+    <Route path="/delete" element={<Deletedd/>}/>
 
     <Route path="*" element={<NotFound/>}/>
 
